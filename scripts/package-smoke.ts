@@ -4,6 +4,7 @@ import { join } from "node:path";
 
 const packageName = "@cclrte/result";
 const importSpecifiers = ["@cclrte/result"];
+const binNames = [];
 const verificationPackages = ["@types/bun@^1.3.14","fast-check@^4.8.0","typescript@^6.0.3"];
 
 async function run(command: readonly string[], cwd: string): Promise<void> {
@@ -30,6 +31,9 @@ try {
   await writeFile(join(consumer, "package.json"), JSON.stringify({ private: true, type: "module" }));
   await run([process.execPath, "add", archive, "--ignore-scripts"], consumer);
   await run(["node", "--input-type=module", "-e", `await import(${JSON.stringify(packageName)})`], consumer);
+  for (const binName of binNames) {
+    await run([join(consumer, "node_modules", ".bin", binName), "--help"], consumer);
+  }
   if (verificationPackages.length > 0) {
     await run([process.execPath, "add", ...verificationPackages, "--ignore-scripts"], consumer);
   }
@@ -40,8 +44,8 @@ try {
     `await Promise.all(${JSON.stringify(importSpecifiers)}.map((specifier) => import(specifier)))`,
   ], consumer);
   await writeFile(join(consumer, "index.ts"), "import * as surface0 from \"@cclrte/result\";\nvoid [surface0];\n");
-  await writeFile(join(consumer, "tsconfig.bundler.json"), "{\n  \"compilerOptions\": {\n    \"target\": \"ES2023\",\n    \"lib\": [\n      \"ES2023\",\n      \"DOM\",\n      \"DOM.Iterable\"\n    ],\n    \"strict\": true,\n    \"noEmit\": true,\n    \"skipLibCheck\": false,\n    \"module\": \"Preserve\",\n    \"moduleResolution\": \"Bundler\"\n  },\n  \"include\": [\n    \"index.ts\"\n  ]\n}");
-  await writeFile(join(consumer, "tsconfig.nodenext.json"), "{\n  \"compilerOptions\": {\n    \"target\": \"ES2023\",\n    \"lib\": [\n      \"ES2023\",\n      \"DOM\",\n      \"DOM.Iterable\"\n    ],\n    \"strict\": true,\n    \"noEmit\": true,\n    \"skipLibCheck\": false,\n    \"module\": \"NodeNext\",\n    \"moduleResolution\": \"NodeNext\"\n  },\n  \"include\": [\n    \"index.ts\"\n  ]\n}");
+  await writeFile(join(consumer, "tsconfig.bundler.json"), "{\n  \"compilerOptions\": {\n    \"target\": \"ES2023\",\n    \"lib\": [\n      \"ES2023\",\n      \"DOM\",\n      \"DOM.Iterable\"\n    ],\n    \"types\": [\n      \"node\"\n    ],\n    \"strict\": true,\n    \"noEmit\": true,\n    \"skipLibCheck\": false,\n    \"module\": \"Preserve\",\n    \"moduleResolution\": \"Bundler\"\n  },\n  \"include\": [\n    \"index.ts\"\n  ]\n}");
+  await writeFile(join(consumer, "tsconfig.nodenext.json"), "{\n  \"compilerOptions\": {\n    \"target\": \"ES2023\",\n    \"lib\": [\n      \"ES2023\",\n      \"DOM\",\n      \"DOM.Iterable\"\n    ],\n    \"types\": [\n      \"node\"\n    ],\n    \"strict\": true,\n    \"noEmit\": true,\n    \"skipLibCheck\": false,\n    \"module\": \"NodeNext\",\n    \"moduleResolution\": \"NodeNext\"\n  },\n  \"include\": [\n    \"index.ts\"\n  ]\n}");
   await run([process.execPath, "x", "tsc", "-p", "./tsconfig.bundler.json"], consumer);
   await run([process.execPath, "x", "tsc", "-p", "./tsconfig.nodenext.json"], consumer);
 } finally {
