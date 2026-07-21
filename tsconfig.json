@@ -8,6 +8,11 @@
     "module": "Preserve",
     "moduleResolution": "Bundler",
     "moduleDetection": "force",
+    "paths": {
+      "@cclrte/result": [
+        "./src/index.ts"
+      ]
+    },
     "verbatimModuleSyntax": true,
     "strict": true,
     "noUncheckedIndexedAccess": true,
