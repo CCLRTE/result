@@ -4,7 +4,7 @@ Result is a small, dependency-free set of TypeScript helpers for explicit failur
 
 ## Install from GitHub
 
-Pin the generated public repository to an immutable version tag:
+Pin the repository to an immutable version tag:
 
 ```json
 {
@@ -50,7 +50,7 @@ The package is ESM-only. Its committed JavaScript runs in Bun and modern Node.js
 
 ## Development and contributions
 
-This repository is a generated public mirror. Read [CONTRIBUTING.md](./CONTRIBUTING.md) before opening a pull request.
+Read [CONTRIBUTING.md](./CONTRIBUTING.md) before opening a pull request.
 
 Report suspected vulnerabilities privately as described in [SECURITY.md](./SECURITY.md).
 

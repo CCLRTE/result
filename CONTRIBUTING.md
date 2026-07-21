@@ -2,7 +2,7 @@
 
 Issues and focused pull requests are welcome in the public repository.
 
-The repository is generated from a canonical workspace. A maintainer ports an accepted public change into that workspace before the next snapshot. The sync job stops when a public commit is not represented in the generated tree, so it cannot silently overwrite a contribution.
+Open an issue before starting a broad API or compatibility change so the design can be agreed first. Maintainers review pull requests for focused scope, runtime portability, narrowing behavior, tests, and documentation.
 
 Run the local checks before opening a pull request:
 
