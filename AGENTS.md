@@ -6,7 +6,7 @@
 - `src/test-support.ts` – bounded property-test helpers used only by the test suite.
 - `dist/` – committed ESM JavaScript and declarations consumed by GitHub dependencies.
 - `README.md`, `CONTRIBUTING.md`, `SECURITY.md`, and `LICENSE` – public usage, project policy, and terms.
-- `package.json`, `tsconfig.json`, `eslint.config.mjs`, and `bun.lock` – standalone package and verification configuration.
+- `package.json`, `tsconfig.json`, and `bun.lock` – standalone package and verification configuration.
 
 # Guidelines
 
