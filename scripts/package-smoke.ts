@@ -7,7 +7,7 @@ const importSpecifiers = ["@cclrte/result"];
 const binNames = [];
 const verificationPackages = ["@types/bun@^1.3.14","fast-check@^4.8.0","typescript@^6.0.3"];
 
-async function run(command: readonly string[], cwd: string): Promise<void> {
+async function run(command: string[], cwd: string): Promise<void> {
   const process = Bun.spawn(command, { cwd, stdout: "inherit", stderr: "inherit" });
   const exitCode = await process.exited;
   if (exitCode !== 0) throw new Error(`Command failed (${String(exitCode)}): ${command.join(" ")}`);
