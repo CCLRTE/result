@@ -9,7 +9,7 @@ Pin the repository to an immutable version tag:
 ```json
 {
   "dependencies": {
-    "@cclrte/result": "github:CCLRTE/result#v0.1.0"
+    "@cclrte/result": "github:hraness/result#v0.1.0"
   }
 }
 ```

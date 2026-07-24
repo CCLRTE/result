@@ -8,11 +8,11 @@
   "packageManager": "bun@1.3.14",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/CCLRTE/result.git"
+    "url": "git+https://github.com/hraness/result.git"
   },
-  "homepage": "https://github.com/CCLRTE/result#readme",
+  "homepage": "https://github.com/hraness/result#readme",
   "bugs": {
-    "url": "https://github.com/CCLRTE/result/issues"
+    "url": "https://github.com/hraness/result/issues"
   },
   "keywords": [
     "typescript",
